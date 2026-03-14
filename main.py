@@ -174,12 +174,16 @@ class Roulette:
                     done = True
                     ...
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and top_speed:
-                    stop = True
+                    if not stop:
+                        stop = True
+                    elif speed < 0.1:
+                        stop = False
+                        top_speed = False
                 continue
 
             if stop and speed > 0:
                 speed -= 0.05
-            elif speed < 10:
+            elif speed < 6:
                 speed += 0.05
             else:
                 top_speed = True
@@ -187,6 +191,8 @@ class Roulette:
             if not(stop and 0.05 >= speed):
                 theta += speed
                 rotated_surface = pygame.transform.rotate(surface, theta * math.pi)
+            else:
+                sleep(2)
             size = rotated_surface.get_rect()[2:]
             root.blit(
                 rotated_surface,
