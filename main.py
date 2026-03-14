@@ -224,7 +224,10 @@ def main():
     gifts = "./gifts.txt"
     if not os.path.exists(gifts):
         init_gifts_file(gifts, [
-            "",
+            "A", "A", "A",
+            "B", "B", "B",
+            "C", "C", "C",
+            "D", "D", "D",
         ])
         ...
 
